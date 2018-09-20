@@ -1,19 +1,39 @@
 <template>
-    <div class="sign">
+    <div class="findPass">
+        
         <el-steps :active="active" finish-status="success" align-center>
-            <el-step title="填写注册信息"></el-step>
+            <el-step title="填写Email"></el-step>
+            <el-step title="邮箱验证"></el-step>
             <el-step title="邮箱验证"></el-step>
             <el-step title="注册完成"></el-step>
         </el-steps>
         <!-- 第一步 -->
-        <el-card class="box-card pos-a" v-if="active == 0">
+        <el-card class="box-card" v-if="active == 0">
+            <p class="font-size-14">Email或用户名</p>
+            <el-input
+              placeholder="请输入您注册的Email"
+              v-model="ruleForm.Email"
+              type="email"
+              clearable>
+            </el-input>
+            <p class="font-size-14 m-t-20 clearfix">验证码 </p>
+            <el-input
+              placeholder="请输入验证码"
+              v-model="ruleForm.code"
+              clearable>
+            </el-input>
+            <el-button type="info" class="signBtn m-t-20" @click="submitUser()">下一步</el-button>
+        </el-card>
+        <!-- 第二步 -->
+        <div class="step2" v-else-if="active == 1">
+            <h1 class="font-size-20">已向您的Email发送验证邮件</h1>
+            <p>我们已经向您的邮箱发送了一封验证邮件，请点击邮件中的链接即可重置密码</p>
+            <el-button class="m-t-10" type="info" @click="enterEmail">进入邮箱验证</el-button>
+            <p class="m-t-10">没有收到邮件? <a href="#">重发一封</a> 或 <a href="#">重新注册</a></p>
+        </div>
+        <!-- 第三步 -->
+        <div class="step3" v-else-if="active == 2">
             <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="80px" class="demo-ruleForm">
-                <el-form-item label="用户名" prop="username">
-                    <el-input v-model="ruleForm.username" autocomplete="off"></el-input>
-                </el-form-item>
-                <el-form-item label="Email" prop="Email">
-                    <el-input v-model="ruleForm.Email" autocomplete="off"></el-input>
-                </el-form-item>
                 <el-form-item label="密码" prop="pass">
                     <el-input type="password" v-model="ruleForm.pass" autocomplete="off"></el-input>
                 </el-form-item>
@@ -21,18 +41,11 @@
                     <el-input type="password" v-model="ruleForm.checkPass" autocomplete="off"></el-input>
                 </el-form-item>
             </el-form>
-            <el-button type="info" class="signBtn" @click="submitForm('ruleForm')">立即注册</el-button>
-        </el-card>
-        <!-- 第二步 -->
-        <div class="step2" v-else-if="active == 1">
-            <h1 class="font-size-20">还差一步即可完成注册</h1>
-            <p>我们已经向您的邮箱发送了一封激活邮件，请点击邮件中的链接完成注册！</p>
-            <el-button class="m-t-10" type="info" @click="enterEmail">进入邮箱验证</el-button>
-            <p class="m-t-10">没有收到邮件? <a href="#">重发一封</a> 或 <a href="#">重新注册</a></p>
+            <el-button type="info" class="signBtn m-t-20" @click="finish('ruleForm')">完成</el-button>
         </div>
-        <!-- 第三步 -->
-        <div class="step3" v-else>
-            <h1 class="font-size-20">恭喜您注册成功</h1>
+        <!-- 第四步 -->
+        <div class="step4" v-else>
+            <h1 class="font-size-20">恭喜您,密码重置成功并登陆</h1>
             <p>{{count}}秒后自动跳转到我的乐享，<a href="#">立即前往</a></p>
         </div>
     </div>
@@ -66,17 +79,13 @@ export default {
             timer:null,
             active:0,  //进度条，表明步骤从0开始
             ruleForm: {
-                username:'',
+                code:'',
                 Email:'',
                 pass: '',
                 checkPass: '',
             },
             rules: {
-                username:[
-                    { required: true, message: '请输入用户名', trigger: 'blur' },
-                ],
                 Email:[
-                    { required: true, message: '请输入邮箱地址', trigger: 'blur' },
                     { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change'] }
                 ],
                 pass: [
@@ -97,19 +106,23 @@ export default {
 
     },
     methods:{
-        submitForm(formName) {
-            this.$refs[formName].validate((valid) => {
-              if (valid) {
+        submitUser() {
+            if (this.ruleForm.Email == "") {
+                this.$message({
+                    message: '请输入正确的邮箱地址',
+                    type: 'warning'
+                });
+            }else if (this.ruleForm.code == "") {
+                this.$message({
+                    message: '请输入正确的验证码',
+                    type: 'warning'
+                });
+            }else{
                 this.active = 1;
-              } else {
-                console.log('error submit!!');
-                return false;
-              }
-            });
+            }
         },
         enterEmail(){
-            this.active = 3;
-            this.countDown();
+            this.active = 2;
         },
         countDown(){
             const TIME_COUNT = 5;
@@ -122,6 +135,17 @@ export default {
                  this.timer = null;
                 }
             }, 1000)
+        },
+        finish(formName){
+            this.$refs[formName].validate((valid) => {
+              if (valid) {
+                this.active = 4;
+                this.countDown();
+              } else {
+                console.log('error submit!!');
+                return false;
+              }
+            });
         }
     }
 }
@@ -129,7 +153,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.sign{
+.findPass{
     .font-size-14{
         font-size: 14px;
     }
@@ -138,6 +162,7 @@ export default {
     }
     height: 100vh;
     .box-card {
+        margin: 20px auto;
         width: 380px;
         top: 80px;
         .signBtn{
@@ -146,7 +171,7 @@ export default {
 
     }
 }
-.step2,.step3{
+.step2,.step3,.step4{
     width: 600px;
     margin: 100px auto;
 }
