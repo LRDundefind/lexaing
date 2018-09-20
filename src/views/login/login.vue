@@ -1,15 +1,27 @@
 <template>
-    <div class="hello">
+    <div class="login">
         <img src="../../assets/logo.png">
-        <h1>{{ msg }}</h1>
-        <el-row>
-            <el-button>默认按钮</el-button>
-            <el-button type="primary">主要按钮</el-button>
-            <el-button type="success">成功按钮</el-button>
-            <el-button type="info">信息按钮</el-button>
-            <el-button type="warning">警告按钮</el-button>
-            <el-button type="danger">危险按钮</el-button>
-        </el-row>
+        <el-card class="box-card pos-a">
+            <div slot="header" class="clearfix">
+              <span>乐享登陆网</span>
+            </div>
+            <div class="text item">
+                <p class="font-size-14">Email或用户名</p>
+                <el-input
+                  placeholder="请输入Email或用户名"
+                  v-model="form.username"
+                  clearable>
+                </el-input>
+                <p class="font-size-14 m-t-20 clearfix">密码 <a href="#" class="floatRight">忘记密码？</a></p>
+                <el-input
+                  placeholder="请输入密码"
+                  v-model="form.password"
+                  clearable>
+                </el-input>
+                <el-button type="primary" class="loginBtn m-t-20" @click="login">登 陆</el-button>
+            </div>
+            <el-button type="info" class="signBtn pos-a" @click="sign">立即注册</el-button>
+        </el-card>
 
     </div>
 </template>
@@ -20,43 +32,64 @@ export default {
     name: 'HelloWorld',
     data () {
       return {
-        msg: 'Welcome to Your Vue.js App...'
+          form:{
+              username:'',
+              password:''
+          }
       }
     },
     mounted() {
-        this.getList()
+       
     },
     created(){
-        //this.defaultAddForm = JSON.parse(JSON.stringify(this.addForm));
+
     },
     methods:{
-        getList(){
-            test.api({
-                query_type: "province",
-                top_num: 10
-            })
-            .then(response => {
-                console.log(response)
-            });
+        login(){
+            if(this.form.username==''){
+                this.$message({
+                    message: '请输入账号',
+                    type: 'warning'
+                });
+            }else if(this.form.password==''){
+                this.$message({
+                    message: '请输入密码',
+                    type: 'warning'
+                });
+            }else{
+
+            }
         },
+        sign(){
+            this.$router.push({path:'/sign'})
+        }
     }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.hello{
-    h1, h2 {
-        color: red;
-        font-size: 24px;
+.login{
+    .font-size-14{
+        font-size: 14px;
     }
-    ul {
-      list-style-type: none;
-      padding: 0;
-    }
-    li {
-      display: inline-block;
-      margin: 0 10px;
+    height: 100vh;
+    background: #ccc;
+    .box-card {
+        width: 380px;
+        height: 400px;
+        top: 80px;
+        right: 40px;
+        font-size: 20px;
+        .loginBtn,.signBtn{
+          width: 100%;
+        }
+        .signBtn{
+            bottom: 0;
+            left: 0;
+            font-size: 20px;
+            line-height: 20px;
+        }
     }
 }
 
