@@ -1,5 +1,5 @@
 <template>
-    <div class="findPass">
+    <div class="findPass p-t-20">
         
         <el-steps :active="active" finish-status="success" align-center>
             <el-step title="填写Email"></el-step>

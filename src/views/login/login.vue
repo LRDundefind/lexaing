@@ -12,7 +12,7 @@
                   v-model="form.username"
                   clearable>
                 </el-input>
-                <p class="font-size-14 m-t-20 clearfix">密码 <a href="#" class="floatRight">忘记密码？</a></p>
+                <p class="font-size-14 m-t-20 clearfix">密码 <a class="floatRight" @click="findPass">忘记密码？</a></p>
                 <el-input
                   placeholder="请输入密码"
                   v-model="form.password"
@@ -62,6 +62,9 @@ export default {
         },
         sign(){
             this.$router.push({path:'/sign'})
+        },
+        findPass(){
+            this.$router.push({path:'/findPass'})
         }
     }
 }
