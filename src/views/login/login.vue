@@ -57,7 +57,7 @@ export default {
                     type: 'warning'
                 });
             }else{
-
+                this.$router.push({path:'/home'})
             }
         },
         sign(){

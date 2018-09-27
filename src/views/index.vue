@@ -1,0 +1,73 @@
+<template>
+    <div class="content">
+        <el-header class="clearfix">
+
+            <el-menu :default-active="activeIndex" class="el-menu-demo floatRight" mode="horizontal" @select="handleSelect">
+                <el-menu-item index="/login">您好，请登陆</el-menu-item>
+                <el-menu-item index="/my">我的乐享</el-menu-item>
+                <!-- <el-submenu index="2">
+                    <template slot="title">我的工作台</template>
+                    <el-menu-item index="2-1">选项1</el-menu-item>
+                    <el-menu-item index="2-2">选项2</el-menu-item>
+                    <el-menu-item index="2-3">选项3</el-menu-item>
+                    <el-submenu index="2-4">
+                        <template slot="title">选项4</template>
+                        <el-menu-item index="2-4-1">选项1</el-menu-item>
+                        <el-menu-item index="2-4-2">选项2</el-menu-item>
+                        <el-menu-item index="2-4-3">选项3</el-menu-item>
+                    </el-submenu>
+                </el-submenu> -->
+                <el-menu-item index="3">购物袋</el-menu-item>
+                <el-menu-item index="4">我的仓库</a></el-menu-item>
+            </el-menu>
+        </el-header>
+        <div class="mainContent">
+            <router-view/>
+        </div>
+    </div>
+</template>
+
+<script>
+
+export default {
+    name: 'home',
+    data () {
+        return {
+            activeIndex: '/home',
+        }
+    },
+    mounted() {
+
+    },
+    created(){
+        //this.defaultAddForm = JSON.parse(JSON.stringify(this.addForm));
+    },
+    methods:{
+        handleSelect(key, keyPath) {
+            this.$router.push({path:key})
+        }
+    }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped lang="scss">
+
+.el-header{
+    position: fixed;
+    top: 0;
+    width: 100%;
+
+}
+.mainContent{
+    width: 100%;
+    position: fixed;
+    top: 60px;
+    height: -moz-calc(100% - 60px);
+    height: -webkit-calc(100% - 60px);
+    height: calc(100% - 60px);
+}
+
+
+
+</style>

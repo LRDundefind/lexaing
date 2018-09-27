@@ -5,10 +5,11 @@ import Router from 'vue-router'
 const Login = resolve => require([ '@/views/login/login'],resolve)
 const Sign = resolve => require([ '@/views/login/sign'],resolve)
 const FindPass = resolve => require([ '@/views/login/findPass'],resolve)
+const Index = resolve => require([ '@/views/index'],resolve)
 //首页路由
 //import Home from './home/home'
-const Home = resolve => require([ '@/views/home/index'],resolve)
-
+//const Home = resolve => require([ '@/views/index'],resolve)
+import Home from "./home/home"
 
 
 
@@ -17,10 +18,6 @@ Vue.use(Router)
 export default new Router({
 	routes: [
 		{
-			path: '/',
-			name: 'login',
-			component: Login,
-		},{
 			path: '/login',
 			name: 'login',
 			component: Login,
@@ -33,9 +30,13 @@ export default new Router({
 			name: 'findPass',
 			component: FindPass,
 		},{
-			path: '/home',
-			name: 'home',
-			component: Home,
+			path: '/',
+			name: 'Index',
+			component: Index,
+			redirect: '/Index',
+			children: [
+				...Home,
+			],
 		}
 	]
 })
