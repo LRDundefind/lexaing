@@ -12,10 +12,10 @@ import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 //引入公共样式 公共部门放入入口不要和其它组件耦合在一起
 import '@/style/common.scss';
-//头部
-import Header from '@/components/Header';
-//注册头部组件
-Vue.component('Header-bar', Header);
+//footer
+import Footer from '@/components/Footer';
+//注册footer组件
+Vue.component('Footer-bar', Footer);
 
 Vue.config.productionTip = false
 

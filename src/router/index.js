@@ -10,8 +10,10 @@ const Index = resolve => require([ '@/views/index'],resolve)
 //import Home from './home/home'
 //const Home = resolve => require([ '@/views/index'],resolve)
 import Home from "./home/home"
-
-
+//我的乐享
+import My from "./my/my"
+//购物袋
+import ShoppingCar from "./shoppingCar/shoppingCar"
 
 Vue.use(Router)
 
@@ -33,9 +35,11 @@ export default new Router({
 			path: '/',
 			name: 'Index',
 			component: Index,
-			redirect: '/Index',
+			redirect: '/home',
 			children: [
 				...Home,
+				...My,
+				...ShoppingCar,
 			],
 		}
 	]

@@ -30,20 +30,26 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
+<style lang="scss">
 .home{
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background: #51ade8;
     .searchBox{
         width: 60%;
         padding-top: 200px;
         margin: 0 auto;
+        .el-input__inner{
+            height: 54px;
+            font-size: 16px;
+        }
+        .el-input-group__append{
+            background: #ffcc00;
+            color: #fff;
+            font-size: 16px;
+        }
+    }
 
-    }
-    .el-input__inner{
-        height: 60px;
-    }
 }
 
 </style>

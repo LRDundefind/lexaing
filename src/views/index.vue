@@ -4,7 +4,7 @@
 
             <el-menu :default-active="activeIndex" class="el-menu-demo floatRight" mode="horizontal" @select="handleSelect">
                 <el-menu-item index="/login">您好，请登陆</el-menu-item>
-                <el-menu-item index="/my">我的乐享</el-menu-item>
+                <el-menu-item index="/my/index">我的乐享</el-menu-item>
                 <!-- <el-submenu index="2">
                     <template slot="title">我的工作台</template>
                     <el-menu-item index="2-1">选项1</el-menu-item>
@@ -17,8 +17,8 @@
                         <el-menu-item index="2-4-3">选项3</el-menu-item>
                     </el-submenu>
                 </el-submenu> -->
-                <el-menu-item index="3">购物袋</el-menu-item>
-                <el-menu-item index="4">我的仓库</a></el-menu-item>
+                <el-menu-item index="/ShoppingCar">购物袋</el-menu-item>
+                <el-menu-item index="/4">我的仓库</a></el-menu-item>
             </el-menu>
         </el-header>
         <div class="mainContent">
@@ -56,16 +56,18 @@ export default {
 .el-header{
     position: fixed;
     top: 0;
+    z-index: 9;
     width: 100%;
-
+    background: #fff;
+    border-bottom: solid 1px #e6e6e6;
 }
 .mainContent{
     width: 100%;
-    position: fixed;
+    position: absolute;
     top: 60px;
-    height: -moz-calc(100% - 60px);
+    /*height: -moz-calc(100% - 60px);
     height: -webkit-calc(100% - 60px);
-    height: calc(100% - 60px);
+    height: calc(100% - 60px);*/
 }
 
 
