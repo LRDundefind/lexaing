@@ -5,7 +5,11 @@ import App from './App'
 import router from './router'
 import axios from 'axios'
 import vuex from 'vuex'
+//管理登陆状态
+import store from './vuex/store'
+Vue.use(vuex)
 import 'babel-polyfill'
+//引入elementUI
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 //注册element组件
@@ -24,5 +28,9 @@ new Vue({
   el: '#app',
   router,
   components: { App },
-  template: '<App/>'
+  template: '<App/>',
+  created(){
+  	store.state.isLogin = localStorage.getItem('isLogin')
+
+  }
 })

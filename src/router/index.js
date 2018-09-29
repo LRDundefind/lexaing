@@ -1,5 +1,9 @@
 import Vue from 'vue'
+
 import Router from 'vue-router'
+import vuex from 'Vuex'
+import store from '@/vuex/store'
+
 //import HelloWorld from '@/components/HelloWorld'
 //登录,注册,找回密码路由
 const Login = resolve => require([ '@/views/login/login'],resolve)
@@ -16,8 +20,7 @@ import My from "./my/my"
 import ShoppingCar from "./shoppingCar/shoppingCar"
 
 Vue.use(Router)
-
-export default new Router({
+const router = new Router({
 	routes: [
 		{
 			path: '/login',
@@ -44,3 +47,27 @@ export default new Router({
 		}
 	]
 })
+/**
+ * 路由拦截
+ * @param  {[type]} (to, from, next [即将要进入的目标 路由对象，当前导航正要离开的路由，]
+ * @return {[type]}      [description]
+ */
+router.beforeEach((to, from, next) => {
+	const token = store.state.isLogin?store.state.isLogin:localStorage.getItem('isLogin');
+    if (to.matched.some(record => record.meta.requireAuth)){  // 判断该路由是否需要登录权限
+        if (token) {  // 判断token是否存在
+          next();
+        }
+        else {
+          next({
+            path: '/login',
+            query: {redirect: to.fullPath}  // 将跳转的路由path作为参数，登录成功后跳转到该路由
+          })
+          //console.log(to.fullPath);
+        }
+    }
+    else {
+        next();
+    }
+});
+export default router;

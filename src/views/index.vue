@@ -4,6 +4,7 @@
 
             <el-menu :default-active="activeIndex" class="el-menu-demo floatRight" mode="horizontal" @select="handleSelect">
                 <el-menu-item index="/login">您好，请登陆</el-menu-item>
+                <el-menu-item index="/home">首页</el-menu-item>
                 <el-menu-item index="/my/index">我的乐享</el-menu-item>
                 <!-- <el-submenu index="2">
                     <template slot="title">我的工作台</template>

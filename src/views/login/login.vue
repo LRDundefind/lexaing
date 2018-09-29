@@ -27,6 +27,8 @@
 </template>
 
 <script>
+import vuex from 'Vuex'
+import store from '@/vuex/store'
 import { test } from '@/services/apis/test';
 export default {
     name: 'HelloWorld',
@@ -57,7 +59,8 @@ export default {
                     type: 'warning'
                 });
             }else{
-                this.$router.push({path:'/home'})
+                store.commit('isLogin',true);
+                this.$router.push({path: this.$route.query.redirect})
             }
         },
         sign(){
