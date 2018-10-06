@@ -18,8 +18,8 @@
                         <el-menu-item index="2-4-3">选项3</el-menu-item>
                     </el-submenu>
                 </el-submenu> -->
-                <el-menu-item index="/ShoppingCar">购物袋</el-menu-item>
-                <el-menu-item index="/4">我的仓库</a></el-menu-item>
+                <!-- <el-menu-item index="/ShoppingCar">购物袋</el-menu-item>
+                <el-menu-item index="/4">我的仓库</a></el-menu-item> -->
             </el-menu>
         </el-header>
         <div class="mainContent">

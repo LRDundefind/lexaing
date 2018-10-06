@@ -1,7 +1,7 @@
 import Vue from 'vue'
 
 import Router from 'vue-router'
-import vuex from 'Vuex'
+import vuex from 'vuex'
 import store from '@/vuex/store'
 
 //import HelloWorld from '@/components/HelloWorld'

@@ -1,6 +1,8 @@
 const Index = resolve => require([ '@/views/my/index'],resolve)
 
 const My = resolve => require([ '@/views/home/my'],resolve)
+//购物车
+const ShoppingCar = resolve => require([ '@/views/my/shoppingCar'],resolve)
 //乐云仓库
 const Warehouse = resolve => require([ '@/views/my/warehouse'],resolve)
 //我的订单
@@ -17,6 +19,12 @@ export default [{
 			name: 'index',
 			components:{
 				myView:Index
+			} 
+		},{
+			path: 'shoppingCar',
+			name: 'shoppingCar',
+			components:{
+				myView:ShoppingCar
 			} 
 		},{
 			path: 'warehouse',

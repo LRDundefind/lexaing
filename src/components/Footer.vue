@@ -2,10 +2,10 @@
     <div class="footer">
         <div style="margin: 0 auto;width: 90%;">
         <el-row :gutter="20">
-          <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
-          <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
-          <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
-          <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
+          <el-col :span="6"><div class="grid-content bg-purple">闪电发货</div></el-col>
+          <el-col :span="6"><div class="grid-content bg-purple">优质服务</div></el-col>
+          <el-col :span="6"><div class="grid-content bg-purple">超值物流</div></el-col>
+          <el-col :span="6"><div class="grid-content bg-purple">便捷支付</div></el-col>
         </el-row>
         </div>
     </div>
@@ -50,6 +50,9 @@ export default {
   .grid-content {
     border-radius: 4px;
     min-height: 100px;
+    font-size: 20px;
+    text-align: center;
+    padding-top: 20px;
   }
   .row-bg {
     padding: 10px 0;
