@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import vuex from 'Vuex'
+import vuex from 'vuex'
 import store from '@/vuex/store'
 import { test } from '@/services/apis/test';
 export default {
@@ -60,7 +60,8 @@ export default {
                 });
             }else{
                 store.commit('isLogin',true);
-                this.$router.push({path: this.$route.query.redirect})
+                let redirect = this.$route.query.redirect || '/home';
+                this.$router.push({path: redirect})
             }
         },
         sign(){

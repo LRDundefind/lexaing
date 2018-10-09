@@ -1,7 +1,7 @@
 <template>
     <div class="my">
         <el-container style="width: 100%;min-height: 500px;">
-            <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
+            <el-aside width="200px">
                 <el-menu @select="handleSelect">
                     <el-menu-item-group>
                         <template slot="title">我的交易</template>

@@ -4,6 +4,13 @@
             <el-input placeholder="复制淘宝、天猫、1688、京东商品链接快速代购" v-model="goods" class="input-with-select">
                 <el-button slot="append" icon="el-icon-search">快速代购</el-button>
             </el-input>
+            <div class="brand">
+                <img class="dm m-l-30 m-r-30" src="../../assets/home/u38.png" alt="">
+                <img class="gucci m-l-30 m-r-30" src="../../assets/home/u46.png" alt="">
+                <img class="dior m-l-30 m-r-30" src="../../assets/home/u44.png" alt="">
+                <img class="burberry m-l-30 m-r-30" src="../../assets/home/u42.png" alt="">
+                <img class="amazon m-l-30 m-r-30" src="../../assets/home/u40.png" alt="">
+            </div>
         </div>
     </div>
 </template>
@@ -13,9 +20,9 @@
 export default {
     name: 'home',
     data () {
-      return {
-        goods: ''
-      }
+        return {
+            goods: ''
+        }
     },
     mounted() {
 
@@ -33,7 +40,7 @@ export default {
 <style lang="scss">
 .home{
     width: 100%;
-    height: 100vh;
+    height: calc(100vh - 60px);
     background: #51ade8;
     .searchBox{
         width: 60%;
@@ -49,7 +56,27 @@ export default {
             font-size: 16px;
         }
     }
-
+    .brand{
+        margin-top: 60px;
+        img{
+            vertical-align: middle;
+        }
+        .dm{
+            width: 116px;
+        }
+        .gucci{
+            width: 60px;
+        }
+        .dior{
+            width: 90px;
+        }
+        .burberry{
+            width: 130px;
+        }
+        .amazon{
+            width: 100px;
+        }
+    } 
 }
 
 </style>

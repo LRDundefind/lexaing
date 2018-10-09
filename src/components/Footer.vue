@@ -2,10 +2,22 @@
     <div class="footer">
         <div style="margin: 0 auto;width: 90%;">
         <el-row :gutter="20">
-          <el-col :span="6"><div class="grid-content bg-purple">闪电发货</div></el-col>
-          <el-col :span="6"><div class="grid-content bg-purple">优质服务</div></el-col>
-          <el-col :span="6"><div class="grid-content bg-purple">超值物流</div></el-col>
-          <el-col :span="6"><div class="grid-content bg-purple">便捷支付</div></el-col>
+            <el-col :span="6"><div class="grid-content bg-purple clearfix">
+                <img src="../assets/u94.png" alt="" class="floatLeft m-l-10">
+                <div class="floatLeft m-l-20 m-t-10"><h3>闪电发货</h3><p>17点前运单当日发货</p></div></div>
+            </el-col>
+            <el-col :span="6"><div class="grid-content bg-purple clearfix">
+                <img src="../assets/u105.png" alt="" class="floatLeft m-l-10">
+                <div class="floatLeft m-l-20 m-t-10"><h3>优质服务</h3><p>免费代购、免费仓储</p></div></div>
+            </el-col>
+            <el-col :span="6"><div class="grid-content bg-purple clearfix">
+                <img src="../assets/u116.png" alt="" class="floatLeft m-l-10">
+                <div class="floatLeft m-l-20 m-t-10"><h3>超值物流</h3><p>优惠与全速双项体验</p></div></div>
+            </el-col>
+            <el-col :span="6"><div class="grid-content bg-purple clearfix">
+                <img src="../assets/u127.png" alt="" class="floatLeft m-l-10">
+                <div class="floatLeft m-l-20 m-t-10"><h3>便捷支付</h3><p>支持微信、支付宝支付</p></div></div>
+            </el-col>
         </el-row>
         </div>
     </div>
@@ -34,29 +46,30 @@ export default {
     &:last-child {
       margin-bottom: 0;
     }
-  }
-  .el-col {
+}
+.el-col {
     border-radius: 4px;
-  }
-  .bg-purple-dark {
-    background: #99a9bf;
-  }
-  .bg-purple {
-    background: #d3dce6;
-  }
-  .bg-purple-light {
-    background: #e5e9f2;
-  }
-  .grid-content {
+}
+
+.grid-content {
     border-radius: 4px;
     min-height: 100px;
     font-size: 20px;
-    text-align: center;
     padding-top: 20px;
-  }
-  .row-bg {
+    h3{
+      font-weight: normal;
+    }
+    p{
+      font-size: 14px;
+      color: #666;
+    }
+    img{
+      width: 80px;
+    }
+}
+.row-bg {
     padding: 10px 0;
     background-color: #f9fafc;
-  }
+}
 
 </style>

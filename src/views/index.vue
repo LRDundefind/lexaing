@@ -1,8 +1,8 @@
 <template>
     <div class="content">
         <el-header class="clearfix">
-
-            <el-menu :default-active="activeIndex" class="el-menu-demo floatRight" mode="horizontal" @select="handleSelect">
+            <router-link to="/home"><img class="logo" src="../assets/u20.png" alt=""></router-link>
+            <el-menu :default-active="setMenuActive($route.path)" class="el-menu-demo floatRight" mode="horizontal" @select="handleSelect">
                 <el-menu-item index="/login">您好，请登陆</el-menu-item>
                 <el-menu-item index="/home">首页</el-menu-item>
                 <el-menu-item index="/my/index">我的乐享</el-menu-item>
@@ -46,7 +46,15 @@ export default {
     methods:{
         handleSelect(key, keyPath) {
             this.$router.push({path:key})
-        }
+        },
+        //设置菜单栏选中状态
+        setMenuActive(path) {
+            if(path.indexOf("/my") == 0) {
+                return "/my/index";
+            }else {
+                return path;
+            }
+        },
     }
 }
 </script>
@@ -59,8 +67,15 @@ export default {
     top: 0;
     z-index: 9;
     width: 100%;
-    background: #fff;
+    background: #f0f0f0;
     border-bottom: solid 1px #e6e6e6;
+    .logo{
+        height: 50px;
+        margin:5px 10px;
+    }
+    .el-menu--horizontal{
+        background: #f0f0f0;
+    }
 }
 .mainContent{
     width: 100%;
