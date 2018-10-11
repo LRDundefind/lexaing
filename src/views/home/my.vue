@@ -50,9 +50,14 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
+<style lang="scss">
 .my{
-    
+    .el-menu-item-group__title {
+        line-height: normal;
+        font-size: 20px;
+        color: #333;
+        border-bottom: 1px #ccc solid;
+    }
 }
 
 </style>
