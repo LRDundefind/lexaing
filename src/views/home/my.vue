@@ -6,8 +6,8 @@
                     <el-menu-item-group>
                         <template slot="title">我的交易</template>
                         <el-menu-item index="/my/ShoppingCar"><i class="el-icon-message"></i>购物车</el-menu-item>
-                        <el-menu-item index="/my/warehouse"><i class="el-icon-message"></i>乐云仓库</el-menu-item>
                         <el-menu-item index="/my/order"><i class="el-icon-menu"></i>我的订单</el-menu-item>
+                        <el-menu-item index="/my/warehouse"><i class="el-icon-message"></i>乐云仓库</el-menu-item>
                         <el-menu-item index="/my/1"><i class="el-icon-news"></i>我的运单</el-menu-item>
                         <el-menu-item index="/my/2"><i class="el-icon-news"></i>历史订单</el-menu-item>
                     </el-menu-item-group>

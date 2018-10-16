@@ -1,10 +1,10 @@
 import axios from "../index";
 
-export const test = {
+export const login = {
     //测试接口
-    api(data) {
+    login(data) {
         return axios({
-            url: '/api/CalculateInfos/getStatisticInfo.json',
+            url: 'api/login/login',
             method: 'post',
             data: data
         });

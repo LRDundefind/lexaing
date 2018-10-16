@@ -28,7 +28,7 @@
                 </table>
             </el-header>
             <el-main>
-
+                <el-checkbox-group v-model="checkedGoods" @change="handleCheckedGoodsChange">
                 <el-table
                   :data="tableData"
                   style="width: 100%"
@@ -37,7 +37,7 @@
                   <el-table-column
                     width="60">
                     <template slot-scope="scope">
-                        <el-checkbox></el-checkbox>
+                        <el-checkbox :label="scope.row" :key="scope.row.id"></el-checkbox>
                     </template>
                   </el-table-column>
                   <el-table-column>
@@ -87,10 +87,11 @@
                     width="100"
                     align="center">
                     <template slot-scope="scope">
-                        <el-button type="text" @click.native.prevent="deleteRow(scope.$index, tableData)">删除</el-button>
+                        <el-button type="text" @click.native.prevent="deleteRow(scope.$index,scope.row, tableData)">删除</el-button>
                     </template>
                   </el-table-column>
                 </el-table>
+                </el-checkbox-group>
             </el-main>
             <el-footer class="clearfix">
                 <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange">全选</el-checkbox>&nbsp;
@@ -113,11 +114,12 @@ export default {
     name: 'my',
     data () {
         return {
-            checkAll:'',
+            checkAll:false,
             goods:[],
             isIndeterminate:false,
             tableData:[
                 {
+                  id:'1',
                   imgPath: 'https://assets-cdn.github.com/images/modules/dashboard/github-universe-2018.svg',
                   info: 'motuoluola',
                   standard: '规格：黑',
@@ -127,8 +129,9 @@ export default {
                   remark:''
                 },
                 {
+                  id:'2',
                   imgPath: 'https://assets-cdn.github.com/images/modules/dashboard/github-universe-2018.svg',
-                  info: 'motuoluola',
+                  info: 'Iapple',
                   standard: '规格：黑',
                   number:1,
                   price:4488,
@@ -136,7 +139,7 @@ export default {
                   remark:''
                 }
             ],
-            checkedGoods:{},
+            checkedGoods:[],
         }
     },
     mounted() {
@@ -147,18 +150,19 @@ export default {
     },
     methods:{
         handleCheckAllChange(val) {
-            //this.checkedGoods = val ? cityOptions : [];
-            //this.isIndeterminate = false;
+            this.checkedGoods = val ? this.tableData : [];
+            this.isIndeterminate = false;
         },
         handleCheckedGoodsChange(value) {
+            //console.log(value)
             let checkedCount = value.length;
-            //this.checkAll = checkedCount === this.goods.length;
-            //this.isIndeterminate = checkedCount > 0 && checkedCount < this.goods.length;
+            this.checkAll = checkedCount === this.tableData.length;
+            this.isIndeterminate = checkedCount > 0 && checkedCount < this.tableData.length;
         },
         numCount:function(value){
 
             if(null==value.number || value.number==""){
-              value.number=1;
+                value.number=1;
             }
             value.goodTotal=(value.number*value.price).toFixed(2);//保留两位小数
             //增加商品数量也需要重新计算商品总价
@@ -168,7 +172,7 @@ export default {
             //输入框输入值变化时会变为字符串格式返回到js
             //此处要用v-model，实现双向数据绑定
             if(typeof addGood.number=='string'){
-              addGood.number=parseInt(addGood.number);
+                addGood.number=parseInt(addGood.number);
             };
             addGood.number+=1;
 
@@ -176,16 +180,30 @@ export default {
         },
         del:function(delGood){
             if(typeof delGood.number=='string'){
-              delGood.number=parseInt(delGood.number);
+                delGood.number=parseInt(delGood.number);
             };
             if(delGood.number>1){
-              delGood.number-=1;
-              this.numCount(delGood)
+                delGood.number-=1;
+                this.numCount(delGood)
             } 
         },
-        //删除购物车商品
-        deleteRow(index, rows) {
-          rows.splice(index, 1);
+
+        /**
+         * 删除购物车商品
+         * @param  {[type]} index [索引值]
+         * @param  {[type]} row [删除的商品]
+         * @param  {[type]} rows [剩余的商品]
+         * @return {[type]}     [description]
+         */
+        deleteRow(index, row, rows) {
+            rows.splice(index, 1);
+
+            for (var i = 0; i < this.checkedGoods.length; i++) {
+                if (row.id == this.checkedGoods[i].id) {
+                    this.checkedGoods.splice(i, 1);
+                }
+            }
+            
         }   
     } 
 }

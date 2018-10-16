@@ -9,7 +9,7 @@
                 <p class="font-size-14">Email或用户名</p>
                 <el-input
                   placeholder="请输入Email或用户名"
-                  v-model="form.username"
+                  v-model="form.account"
                   clearable>
                 </el-input>
                 <p class="font-size-14 m-t-20 clearfix">密码 <a class="floatRight" @click="findPass">忘记密码？</a></p>
@@ -41,7 +41,7 @@
 <script>
 import vuex from 'vuex'
 import store from '@/vuex/store'
-import { test } from '@/services/apis/test';
+import { login } from '@/services/apis/login';
 var show_num = [];
 export default {
     name: 'HelloWorld',
@@ -49,7 +49,7 @@ export default {
         
         return {
             form:{
-                username:'',
+                account:'',
                 password:'',
                 code:''
             }
@@ -63,7 +63,7 @@ export default {
     },
     methods:{
         login(){
-            if(this.form.username==''){
+            if(this.form.account==''){
                 this.$message({
                     message: '请输入账号',
                     type: 'warning'
@@ -79,9 +79,12 @@ export default {
                     type: 'warning'
                 });
             }else{
-                store.commit('isLogin',true);
-                let redirect = this.$route.query.redirect || '/home';
-                this.$router.push({path: redirect})
+                //login.login(this.form).then(response=>{
+                    store.commit('isLogin',true);
+                    let redirect = this.$route.query.redirect || '/home';
+                    this.$router.push({path: redirect})
+                //})
+                
             }
         },
         sign(){

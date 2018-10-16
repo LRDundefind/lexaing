@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import { test } from '@/services/apis/test';
+import { login } from '@/services/apis/login';
 export default {
     data () {
         var validatePass = (rule, value, callback) => {

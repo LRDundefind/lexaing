@@ -57,7 +57,8 @@ export default {
         }
     }
     .brand{
-        margin-top: 60px;
+        margin: 60px auto 0 auto;
+        width: 820px;
         img{
             vertical-align: middle;
         }
