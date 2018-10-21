@@ -223,6 +223,9 @@ export default {
     .el-input-group__append, .el-input-group__prepend{
         padding: 0 10px; 
     }
+    .el-checkbox__label{
+        display: none;
+    }
 }
 
 </style>
