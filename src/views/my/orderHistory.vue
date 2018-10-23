@@ -13,12 +13,6 @@
                   style="width: 100%"
                   >
                   <el-table-column
-                    width="60">
-                    <template slot-scope="scope">
-                        <el-checkbox></el-checkbox>
-                    </template>
-                  </el-table-column>
-                  <el-table-column
                     label="商品详情"
                     prop="info">
 
@@ -38,8 +32,7 @@
                     label="操作"
                     align="center">
                     <template slot-scope="scope">
-                        <el-button type="danger" size="mini">付款</el-button>
-                        <el-button type="text">取消</el-button>
+                        <el-button type="text">取消订单</el-button>
                     </template>
                   </el-table-column>
                 </el-table>

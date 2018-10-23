@@ -1,9 +1,9 @@
 <template>
     <div class="warehouse">
         <el-menu :default-active="activeIndex" mode="horizontal" @select="handleSelect">
-            <el-menu-item index="1">待付款</el-menu-item>
-            <el-menu-item index="2">已付款</el-menu-item>
-            <el-menu-item index="3">待收货</el-menu-item>
+            <el-menu-item index="1">已支付</el-menu-item>
+            <el-menu-item index="2">已发出</el-menu-item>
+            <el-menu-item index="3">已签收</el-menu-item>
         </el-menu>
         <el-container class="m-b-20 m-t-20">
             
@@ -13,33 +13,41 @@
                   style="width: 100%"
                   >
                   <el-table-column
-                    width="60">
-                    <template slot-scope="scope">
-                        <el-checkbox></el-checkbox>
-                    </template>
+                    label="包裹编号"
+                    prop="parcelNum">
+              
                   </el-table-column>
                   <el-table-column
-                    label="商品详情"
+                    label="详情"
                     prop="info">
 
                   </el-table-column>
                   <el-table-column
-                    label="总金额"
-                    prop="amount">
+                    label="重量"
+                    prop="weight">
                   </el-table-column>
                   <el-table-column
-                    label="订单状态"
+                    prop="consignee"
+                    label="收货人">
+
+                  </el-table-column>
+                  <el-table-column
+                    label="状态"
                     prop="status">
                  
                   </el-table-column>
                   
                   <el-table-column
+                    label="物流编号"
+                    prop="logisticsNum">
+
+                  </el-table-column>
+                  <el-table-column
                     width="100"
                     label="操作"
                     align="center">
                     <template slot-scope="scope">
-                        <el-button type="danger" size="mini">付款</el-button>
-                        <el-button type="text">取消</el-button>
+                        <el-button type="text">删除</el-button>
                     </template>
                   </el-table-column>
                 </el-table>
@@ -59,16 +67,12 @@
                 isIndeterminate:false,
                 tableData:[
                     {
-
+                      parcelNum: '001',
                       info: 'motuoluola',
-                      amount: 1000,
-                      status:"待收货",
-
-                    },{
-
-                      info: 'iPhone',
-                      amount: 1000,
-                      status:"待收货",
+                      weight: '10',
+                      consignee:"李",
+                      status:"已收货",
+                      logisticsNum:"001",
 
                     },
                 ],

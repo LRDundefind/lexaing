@@ -109,7 +109,7 @@
 </template>
 
 <script>
-
+import { my } from '@/services/apis/my';
 export default {
     name: 'my',
     data () {
@@ -140,10 +140,17 @@ export default {
                 }
             ],
             checkedGoods:[],
+            param:{
+                accid:"1",
+                page:"1",
+                size:"10"
+            }
         }
     },
     mounted() {
-
+        my.check(this.param).then(response=>{
+            console.log(response)
+        })
     },
     created(){
         

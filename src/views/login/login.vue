@@ -79,11 +79,11 @@ export default {
                     type: 'warning'
                 });
             }else{
-                //login.login(this.form).then(response=>{
+                login.login(this.form).then(response=>{
                     store.commit('isLogin',true);
                     let redirect = this.$route.query.redirect || '/home';
                     this.$router.push({path: redirect})
-                //})
+                })
                 
             }
         },

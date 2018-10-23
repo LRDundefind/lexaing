@@ -7,6 +7,10 @@ const ShoppingCar = resolve => require([ '@/views/my/shoppingCar'],resolve)
 const Warehouse = resolve => require([ '@/views/my/warehouse'],resolve)
 //我的订单
 const Order = resolve => require([ '@/views/my/order'],resolve)
+//历史订单
+const Orderhistory = resolve => require([ '@/views/my/orderHistory'],resolve)
+//我的运单
+const Transport = resolve => require([ '@/views/my/transport'],resolve)
 
 export default [{
 	path: 'my',
@@ -37,6 +41,18 @@ export default [{
 			name: 'order',
 			components:{
 				myView:Order
+			} 
+		},{
+			path: 'orderHistory',
+			name: 'orderHistory',
+			components:{
+				myView:Orderhistory
+			} 
+		},{
+			path: 'transport',
+			name: 'transport',
+			components:{
+				myView:Transport
 			} 
 		}
 	],
