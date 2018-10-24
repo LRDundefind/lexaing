@@ -2,7 +2,7 @@
     <div class="home pos-a">
         <div class="searchBox">
             <el-input placeholder="复制淘宝、天猫、1688、京东商品链接快速代购" v-model="goods" class="input-with-select">
-                <el-button slot="append" icon="el-icon-search">快速代购</el-button>
+                <el-button slot="append" icon="el-icon-search" @click="searchGood">快速代购</el-button>
             </el-input>
             <div class="brand">
                 <img class="dm m-l-30 m-r-30" src="../../assets/home/u38.png" alt="">
@@ -31,7 +31,9 @@ export default {
         //this.defaultAddForm = JSON.parse(JSON.stringify(this.addForm));
     },
     methods:{
-
+        searchGood(){
+            this.$router.push({path: "goods"})
+        }
     }
 }
 </script>
