@@ -4,7 +4,7 @@ export const login = {
     //测试接口
     login(data) {
         return axios({
-            url: 'api/login/login',
+            url: '/api/mainframe/login/login',
             method: 'post',
             data: data
         });

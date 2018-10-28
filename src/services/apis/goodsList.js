@@ -1,10 +1,10 @@
 import axios from "../index";
 
-export const my = {
+export const goods = {
     //测试接口
-    check(data) {
+    list(data) {
         return axios({
-            url: '/api/mainfmera/item/findItem',
+            url: '/api/mainframe/usergoods/getusergoods.json',
             method: 'post',
             data: data
         });

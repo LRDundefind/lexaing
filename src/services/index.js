@@ -37,12 +37,12 @@ instance.interceptors.response.use(function (response) {
 }, function (error) {
 
     //  对响应错误做点什么
-    // MessageBox({
-    //     //message: error.response.data.message,
-    //     type: 'error',
-    //     showConfirmButton: false,
-    //     duration: 5 * 1000
-    // });
+    MessageBox({
+        //message: error.response.data.message,
+        type: 'error',
+        showConfirmButton: false,
+        duration: 5 * 1000
+    });
     return Promise.reject(error);
 });
 
