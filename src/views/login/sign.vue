@@ -8,12 +8,13 @@
         <div class="box">
             <!-- 第一步 -->
             <el-card class="box-card pos-a" v-if="active == 0">
+                <p class="m-b-10">在此创建一个您的乐享账户。我已经注册，现在就 <router-link to="/login">登陆</router-link></p>
                 <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="80px" class="demo-ruleForm">
-                    <el-form-item label="用户名" prop="username">
-                        <el-input v-model="ruleForm.username" autocomplete="off"></el-input>
+                    <el-form-item label="用户名" prop="accName">
+                        <el-input v-model="ruleForm.accName" autocomplete="off"></el-input>
                     </el-form-item>
-                    <el-form-item label="Email" prop="Email">
-                        <el-input v-model="ruleForm.Email" autocomplete="off"></el-input>
+                    <el-form-item label="email" prop="email">
+                        <el-input v-model="ruleForm.email" autocomplete="off"></el-input>
                     </el-form-item>
                     <el-form-item label="密码" prop="pass">
                         <el-input type="password" v-model="ruleForm.pass" autocomplete="off"></el-input>
@@ -68,16 +69,16 @@ export default {
             timer:null,
             active:0,  //进度条，表明步骤从0开始
             ruleForm: {
-                username:'',
-                Email:'',
+                accName:'',
+                email:'',
                 pass: '',
                 checkPass: '',
             },
             rules: {
-                username:[
+                accName:[
                     { required: true, message: '请输入用户名', trigger: 'blur' },
                 ],
-                Email:[
+                email:[
                     { required: true, message: '请输入邮箱地址', trigger: 'blur' },
                     { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change'] }
                 ],
@@ -101,12 +102,19 @@ export default {
     methods:{
         submitForm(formName) {
             this.$refs[formName].validate((valid) => {
-              if (valid) {
-                this.active = 1;
-              } else {
-                console.log('error submit!!');
-                return false;
-              }
+                if (valid) {
+                    if (true) {
+                        login.register(this.ruleForm).then(response=>{
+                            this.active = 1; 
+
+                        })
+                       
+                    }
+                        
+                } else {
+                    console.log('error submit!!');
+                    return false;
+                }
             });
         },
         enterEmail(){

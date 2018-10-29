@@ -28,7 +28,7 @@
 </template>
 
 <script>
-
+import { goods } from '@/services/apis/goodsList';
 export default {
     name: 'goods',
     data () {
@@ -64,7 +64,9 @@ export default {
         }
     },
     mounted() {
-
+        goods.list().then(response=>{
+            console.log(response)
+        })
     },
     created(){
         
