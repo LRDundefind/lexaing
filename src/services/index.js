@@ -21,6 +21,20 @@ instance.interceptors.request.use(function (config) {
     // 在发送请求之前做些什么
     config.headers['Accept'] = '*/*';
     config.headers['Content-Type'] = 'text/plain';
+
+    // if(config.method=='post'){  //设置固定入参
+    //     config.data = {
+    //         ...config.data,
+    //         _t: Date.parse(new Date())/1000,
+    //     }
+    // }else if(config.method=='get'){
+    //     config.params = {
+    //         _t: Date.parse(new Date())/1000,
+    //         ...config.params
+    //     }
+    // }
+
+
     return config;
     
 }, function (error) {

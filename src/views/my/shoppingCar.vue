@@ -141,7 +141,7 @@ export default {
             ],
             checkedGoods:[],
             param:{
-                accid:"1",
+                accid:"73b49cf1808441ce91478682c34b199c",
                 page:"1",
                 size:"10"
             }

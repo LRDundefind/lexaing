@@ -33,4 +33,13 @@ export const my = {
             data: data
         });
     },
+    
+    //我的订单
+    usergoods(data) {
+        return axios({
+            url: '/mainframe/usergoods/getusergoods.json',
+            method: 'post',
+            data: data
+        });
+    },
 }
