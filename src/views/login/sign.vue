@@ -28,14 +28,15 @@
             <!-- 第二步 -->
             <div class="step2" v-else-if="active == 1">
                 <h1 class="font-size-20">还差一步即可完成注册</h1>
-                <p>我们已经向您的邮箱发送了一封激活邮件，请点击邮件中的链接完成注册！</p>
-                <el-button class="m-t-10" type="info" @click="enterEmail">进入邮箱验证</el-button>
+                <p>我们已经向您的邮箱发送了一封邮件，请将邮箱中得验证码填入以下输入框！</p>
+                <el-input v-model="ruleForm.verificationCode" autocomplete="off"></el-input>
+                <el-button class="m-t-10" type="info" @click="finish">完成</el-button>
                 <p class="m-t-10">没有收到邮件? <a href="#">重发一封</a> 或 <a href="#">重新注册</a></p>
             </div>
             <!-- 第三步 -->
             <div class="step3" v-else>
                 <h1 class="font-size-20">恭喜您注册成功</h1>
-                <p>{{count}}秒后自动跳转到我的乐享，<a href="#">立即前往</a></p>
+                <p>{{count}}秒后自动跳转到我的乐享，<router-link to="/home">立即前往</router-link></p>
             </div>
         </div>
     </div>
@@ -73,6 +74,7 @@ export default {
                 email:'',
                 pass: '',
                 checkPass: '',
+                verificationCode:''
             },
             rules: {
                 accName:[
@@ -103,23 +105,23 @@ export default {
         submitForm(formName) {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
-                    if (true) {
-                        login.register(this.ruleForm).then(response=>{
+                   
+                    login.sendVerificationCode1({email:this.ruleForm.email}).then(response=>{
                             this.active = 1; 
 
-                        })
-                       
-                    }
-                        
+                    })
+    
                 } else {
                     console.log('error submit!!');
                     return false;
                 }
             });
         },
-        enterEmail(){
-            this.active = 3;
-            this.countDown();
+        finish(){
+            login.register(this.ruleForm).then(response=>{
+                this.active = 3;
+                this.countDown();
+            })
         },
         countDown(){
             const TIME_COUNT = 5;
@@ -130,6 +132,7 @@ export default {
                 } else {
                  clearInterval(this.timer);
                  this.timer = null;
+                 this.$router.push({path:'/my'})
                 }
             }, 1000)
         }

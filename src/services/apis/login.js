@@ -26,7 +26,7 @@ export const login = {
         });
     },
     //发送注册账号验证码
-    updatePass(data){
+    sendVerificationCode1(data){
     	return axios({
             url: '/mainframe/login/sendVerificationCode1',
             method: 'post',
@@ -34,7 +34,7 @@ export const login = {
         });
     },
     //发送重置密码验证码
-    updatePass(data){
+    sendVerificationCode2(data){
     	return axios({
             url: '/mainframe/login/sendVerificationCode2',
             method: 'post',
