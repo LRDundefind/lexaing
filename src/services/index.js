@@ -11,16 +11,16 @@ let instance = axios.create({
     baseURL: process.env.BASE_API,  //在config中配置
     timeout: 5000,  //请求超时
     withCredentials: false, //加了这段就可以跨域了
-    // transformRequest: [function (data) { // 只能用在 'PUT', 'POST' 和 'PATCH' 这几个请求方法
-    //             data = qs.stringify(data)
-    //             return data
-    //}]
+    transformRequest: [function (data) { // 只能用在 'PUT', 'POST' 和 'PATCH' 这几个请求方法
+                data = qs.stringify(data)
+                return data
+    }]
 });
 // 添加请求拦截器
 instance.interceptors.request.use(function (config) {
     // 在发送请求之前做些什么
     config.headers['Accept'] = '*/*';
-    config.headers['Content-Type'] = 'text/plain';
+    config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
 
     // if(config.method=='post'){  //设置固定入参
     //     config.data = {
@@ -44,9 +44,18 @@ instance.interceptors.request.use(function (config) {
 
 // 添加响应拦截器
 instance.interceptors.response.use(function (response) {
+    if (response.data.code != 200 ) {
+      
+        MessageBox({
+            message: response.data.msg,
+            type: 'error',
+            showConfirmButton: false,
+            duration: 5 * 1000
+        });
 
+    };
     return response;
-   
+    
 
 }, function (error) {
 

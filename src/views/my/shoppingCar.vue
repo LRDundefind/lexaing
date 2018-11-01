@@ -37,7 +37,7 @@
                   <el-table-column
                     width="60">
                     <template slot-scope="scope">
-                        <el-checkbox :label="scope.row" :key="scope.row.id"></el-checkbox>
+                        <el-checkbox :label="scope.row" :key="scope.row.itemId"></el-checkbox>
                     </template>
                   </el-table-column>
                   <el-table-column>
@@ -119,7 +119,7 @@ export default {
             isIndeterminate:false,
             tableData:[
                 {
-                  id:'1',
+                  itemId:'1',
                   imgPath: 'https://assets-cdn.github.com/images/modules/dashboard/github-universe-2018.svg',
                   info: 'motuoluola',
                   standard: '规格：黑',
@@ -129,7 +129,7 @@ export default {
                   remark:''
                 },
                 {
-                  id:'2',
+                  itemId:'2',
                   imgPath: 'https://assets-cdn.github.com/images/modules/dashboard/github-universe-2018.svg',
                   info: 'Iapple',
                   standard: '规格：黑',
@@ -141,15 +141,20 @@ export default {
             ],
             checkedGoods:[],
             param:{
-                accid:"73b49cf1808441ce91478682c34b199c",
+                accid:"",
                 page:"1",
                 size:"10"
             }
         }
     },
     mounted() {
+        this.param.accid = localStorage.getItem("userId") || '';
         my.check(this.param).then(response=>{
-            console.log(response)
+            if (response.data.code == 200) {
+                
+            }else{
+
+            }
         })
     },
     created(){

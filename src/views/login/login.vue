@@ -1,6 +1,6 @@
 <template>
     <div class="login">
-        <img src="../../assets/logo.png">
+        <img src="../../assets/logo.png" class="loginImg">
         <el-card class="box-card pos-a">
             <div slot="header" class="clearfix">
                 <span>乐享登陆网</span>
@@ -80,9 +80,18 @@ export default {
                 });
             }else{
                 login.login(this.form).then(response=>{
-                    store.commit('isLogin',true);
-                    let redirect = this.$route.query.redirect || '/home';
-                    this.$router.push({path: redirect})
+                    if (response.data.code == 200) {
+                        localStorage.setItem("userId",response.data.data.accId)
+                        store.commit('isLogin',true);
+                        let redirect = this.$route.query.redirect || '/home';
+                        this.$router.push({path: redirect})
+                    }else{
+                        this.$message({
+                          message: response.data.msg,
+                          type: 'warning'
+                        });
+                    }
+                    
                 })
                 
             }
@@ -158,6 +167,11 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .login{
+    .loginImg{
+        margin-top: 80px;
+        margin-left: 200px;
+        width: 400px;
+    }
     .font-size-14{
         font-size: 14px;
     }

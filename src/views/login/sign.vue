@@ -16,8 +16,8 @@
                     <el-form-item label="email" prop="email">
                         <el-input v-model="ruleForm.email" autocomplete="off"></el-input>
                     </el-form-item>
-                    <el-form-item label="密码" prop="pass">
-                        <el-input type="password" v-model="ruleForm.pass" autocomplete="off"></el-input>
+                    <el-form-item label="密码" prop="accPassword">
+                        <el-input type="password" v-model="ruleForm.accPassword" autocomplete="off"></el-input>
                     </el-form-item>
                     <el-form-item label="确认密码" prop="checkPass">
                         <el-input type="password" v-model="ruleForm.checkPass" autocomplete="off"></el-input>
@@ -43,6 +43,8 @@
 </template>
 
 <script>
+import vuex from 'vuex'
+import store from '@/vuex/store'
 import { login } from '@/services/apis/login';
 export default {
     data () {
@@ -59,7 +61,7 @@ export default {
         var validatePass2 = (rule, value, callback) => {
             if (value === '') {
               callback(new Error('请再次输入密码'));
-            } else if (value !== this.ruleForm.pass) {
+            } else if (value !== this.ruleForm.accPassword) {
               callback(new Error('两次输入密码不一致!'));
             } else {
               callback();
@@ -72,7 +74,7 @@ export default {
             ruleForm: {
                 accName:'',
                 email:'',
-                pass: '',
+                accPassword: '',
                 checkPass: '',
                 verificationCode:''
             },
@@ -84,7 +86,7 @@ export default {
                     { required: true, message: '请输入邮箱地址', trigger: 'blur' },
                     { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change'] }
                 ],
-                pass: [
+                accPassword: [
                     { required: true, message: '请输入密码', trigger: 'blur' },
                     { validator: validatePass, trigger: 'blur' }
                 ],
@@ -107,8 +109,14 @@ export default {
                 if (valid) {
                    
                     login.sendVerificationCode1({email:this.ruleForm.email}).then(response=>{
-                            this.active = 1; 
-
+                        if (response.data.code == 200) {
+                            this.active = 1;
+                        }else{
+                            this.$message({
+                              message: response.data.msg,
+                              type: 'warning'
+                            });
+                        }
                     })
     
                 } else {
@@ -119,8 +127,12 @@ export default {
         },
         finish(){
             login.register(this.ruleForm).then(response=>{
-                this.active = 3;
-                this.countDown();
+                if (response.data.code == 200) {
+                    store.commit('isLogin',true);
+                    localStorage.setItem("userId",response.data.data.accId)
+                    this.active = 3;
+                    this.countDown();
+                }
             })
         },
         countDown(){
@@ -132,7 +144,7 @@ export default {
                 } else {
                  clearInterval(this.timer);
                  this.timer = null;
-                 this.$router.push({path:'/my'})
+                 this.$router.push({path:'/my/index'})
                 }
             }, 1000)
         }

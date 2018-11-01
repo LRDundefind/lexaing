@@ -51,6 +51,7 @@ export default {
             this.$router.push({path:key})
             if (key == '/login?exit=1') {
                 store.commit('isLogin',false);
+                localStorage.removeItem('userId')
             }
         },
         //设置菜单栏选中状态
