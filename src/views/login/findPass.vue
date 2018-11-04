@@ -12,16 +12,16 @@
             <p class="font-size-14">Email或用户名</p>
             <el-input
               placeholder="请输入您注册的Email"
-              v-model="ruleForm.Email"
+              v-model="ruleForm.email"
               type="email"
               clearable>
             </el-input>
-            <p class="font-size-14 m-t-20 clearfix">验证码 </p>
+            <!-- <p class="font-size-14 m-t-20 clearfix">验证码 </p>
             <el-input
               placeholder="请输入验证码"
               v-model="ruleForm.code"
               clearable>
-            </el-input>
+            </el-input> -->
             <el-button type="info" class="signBtn m-t-20" @click="submitUser()">下一步</el-button>
         </el-card>
         <!-- 第二步 -->
@@ -34,8 +34,14 @@
         <!-- 第三步 -->
         <div class="step3" v-else-if="active == 2">
             <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="80px" class="demo-ruleForm">
-                <el-form-item label="密码" prop="pass">
-                    <el-input type="password" v-model="ruleForm.pass" autocomplete="off"></el-input>
+                <el-form-item label="用户名" prop="accId">
+                    <el-input type="password" v-model="ruleForm.accId" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="验证码" prop="verificationCode">
+                    <el-input type="password" v-model="ruleForm.verificationCode" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="密码" prop="accPassword">
+                    <el-input type="password" v-model="ruleForm.accPassword" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="确认密码" prop="checkPass">
                     <el-input type="password" v-model="ruleForm.checkPass" autocomplete="off"></el-input>
@@ -46,7 +52,7 @@
         <!-- 第四步 -->
         <div class="step4" v-else>
             <h1 class="font-size-20">恭喜您,密码重置成功并登陆</h1>
-            <p>{{count}}秒后自动跳转到我的乐享，<a href="#">立即前往</a></p>
+            <p>{{count}}秒后自动跳转到我的乐享，<router-link to="/home">立即前往</router-link></p>
         </div>
     </div>
 </template>
@@ -79,16 +85,20 @@ export default {
             timer:null,
             active:0,  //进度条，表明步骤从0开始
             ruleForm: {
-                code:'',
-                Email:'',
-                pass: '',
+                accId:'',
+                email:'',
+                accPassword: '',
                 checkPass: '',
+                verificationCode:''
             },
             rules: {
-                Email:[
+                email:[
                     { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change'] }
                 ],
-                pass: [
+                verificationCode:[
+                    { required: true, message: '请输入验证码', trigger: 'blur' },
+                ],
+                accPassword: [
                     { required: true, message: '请输入密码', trigger: 'blur' },
                     { validator: validatePass, trigger: 'blur' }
                 ],
@@ -107,18 +117,17 @@ export default {
     },
     methods:{
         submitUser() {
-            if (this.ruleForm.Email == "") {
+            if (this.ruleForm.email == "") {
                 this.$message({
                     message: '请输入正确的邮箱地址',
                     type: 'warning'
                 });
-            }else if (this.ruleForm.code == "") {
-                this.$message({
-                    message: '请输入正确的验证码',
-                    type: 'warning'
-                });
             }else{
-                this.active = 1;
+                login.sendVerificationCode2({email:this.ruleForm.email}).then(response=>{
+                    if (response.data.code == 200) {
+                        this.active = 1;
+                    }
+                })
             }
         },
         enterEmail(){
@@ -133,14 +142,26 @@ export default {
                 } else {
                  clearInterval(this.timer);
                  this.timer = null;
+                 this.$router.push({path:'/my/index'})
                 }
             }, 1000)
         },
         finish(formName){
             this.$refs[formName].validate((valid) => {
               if (valid) {
-                this.active = 4;
-                this.countDown();
+                login.updatePass({
+                    accId:this.ruleForm.accId,
+                    accPassword:this.ruleForm.accPassword,
+                    verificationCode:this.ruleForm.verificationCode,
+                }).then(response=>{
+                    if (response.data.code == 200) {
+                        this.active = 4;
+                        this.countDown();
+                        store.commit('isLogin',true);
+                        localStorage.setItem("userId",response.data.data.accId)
+                    }
+                })
+                
               } else {
                 console.log('error submit!!');
                 return false;

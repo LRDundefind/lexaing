@@ -1,7 +1,7 @@
 <template>
     <div class="home pos-a">
         <div class="searchBox">
-            <el-input placeholder="复制淘宝、天猫、1688、京东商品链接快速代购" v-model="goods" class="input-with-select">
+            <el-input placeholder="复制商品链接" v-model="goods" class="input-with-select">
                 <el-button slot="append" icon="el-icon-search" @click="searchGood">快速代购</el-button>
             </el-input>
             <div class="brand">
@@ -32,7 +32,12 @@ export default {
     },
     methods:{
         searchGood(){
-            this.$router.push({path: "goods"})
+            this.$router.push({
+                path: "goods",
+                query:{
+                    url:this.goods,
+                }
+            })
         }
     }
 }
@@ -43,7 +48,9 @@ export default {
 .home{
     width: 100%;
     height: calc(100vh - 60px);
-    background: #51ade8;
+    background: url("../../assets/bg.jpeg") no-repeat;
+    background-size: cover;
+    /*background: #51ade8;*/
     .searchBox{
         width: 60%;
         padding-top: 200px;

@@ -1,9 +1,9 @@
 <template>
     <div class="login">
-        <img src="../../assets/logo.png" class="loginImg">
+        <!-- <img src="../../assets/logo.png" class="loginImg"> -->
         <el-card class="box-card pos-a">
             <div slot="header" class="clearfix">
-                <span>乐享登陆网</span>
+                <span>乐享网登陆</span>
             </div>
             <div class="text item">
                 <p class="font-size-14">Email或用户名</p>
@@ -176,7 +176,8 @@ export default {
         font-size: 14px;
     }
     height: 100vh;
-    background: #ccc;
+    background: url("../../assets/bg.jpeg") no-repeat;
+    background-size: cover;
     .box-card {
         width: 380px;
         height: 440px;
