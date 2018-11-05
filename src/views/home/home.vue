@@ -115,19 +115,27 @@ export default {
             
         },
         addCar(){
-            my.saveItem({
-                accid:this.accid,
-                goodsId:this.form.goodsId,
-                itemNum:1
-            }).then(response=>{
-                if (response.data.code == 200) {
-                    this.$message({
-                        message: '成功加入购物车',
-                        type: 'success'
-                    });
-                }
-                    
-            })
+            if (this.accid) {
+                my.saveItem({
+                    accid:this.accid,
+                    goodsId:this.form.goodsId,
+                    itemNum:1
+                }).then(response=>{
+                    if (response.data.code == 200) {
+                        this.$message({
+                            message: '成功加入购物车',
+                            type: 'success'
+                        });
+                    }
+                        
+                })
+            }else{
+                this.$message({
+                    message: '请先登陆',
+                    type: 'warning'
+                });
+            }
+            
 
         }
     }
