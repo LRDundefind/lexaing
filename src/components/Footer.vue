@@ -1,24 +1,25 @@
 <template>
     <div class="footer">
         <div style="margin: 0 auto;width: 90%;">
-        <el-row :gutter="20">
-            <el-col :span="6"><div class="grid-content bg-purple clearfix">
-                <img src="../assets/u94.png" alt="" class="floatLeft m-l-10">
-                <div class="floatLeft m-l-20 m-t-10"><h3>闪电发货</h3><p>17点前运单当日发货</p></div></div>
-            </el-col>
-            <el-col :span="6"><div class="grid-content bg-purple clearfix">
-                <img src="../assets/u105.png" alt="" class="floatLeft m-l-10">
-                <div class="floatLeft m-l-20 m-t-10"><h3>优质服务</h3><p>免费代购、免费仓储</p></div></div>
-            </el-col>
-            <el-col :span="6"><div class="grid-content bg-purple clearfix">
-                <img src="../assets/u116.png" alt="" class="floatLeft m-l-10">
-                <div class="floatLeft m-l-20 m-t-10"><h3>超值物流</h3><p>优惠与全速双项体验</p></div></div>
-            </el-col>
-            <el-col :span="6"><div class="grid-content bg-purple clearfix">
-                <img src="../assets/u127.png" alt="" class="floatLeft m-l-10">
-                <div class="floatLeft m-l-20 m-t-10"><h3>便捷支付</h3><p>支持微信、支付宝支付</p></div></div>
-            </el-col>
-        </el-row>
+            <el-row :gutter="20">
+                <el-col :span="6"><div class="grid-content bg-purple clearfix">
+                    <img src="../assets/u94.png" alt="" class="floatLeft m-l-10">
+                    <div class="floatLeft m-l-20 m-t-10"><h3>闪电发货</h3><p>17点前运单当日发货</p></div></div>
+                </el-col>
+                <el-col :span="6"><div class="grid-content bg-purple clearfix">
+                    <img src="../assets/u105.png" alt="" class="floatLeft m-l-10">
+                    <div class="floatLeft m-l-20 m-t-10"><h3>优质服务</h3><p>免费代购、免费仓储</p></div></div>
+                </el-col>
+                <el-col :span="6"><div class="grid-content bg-purple clearfix">
+                    <img src="../assets/u116.png" alt="" class="floatLeft m-l-10">
+                    <div class="floatLeft m-l-20 m-t-10"><h3>超值物流</h3><p>优惠与全速双项体验</p></div></div>
+                </el-col>
+                <el-col :span="6"><div class="grid-content bg-purple clearfix">
+                    <img src="../assets/u127.png" alt="" class="floatLeft m-l-10">
+                    <div class="floatLeft m-l-20 m-t-10"><h3>便捷支付</h3><p>支持微信、支付宝支付</p></div></div>
+                </el-col>
+            </el-row>
+            <p class="licence p-b-20 textCenter" style="color: #666">许可证编号：冀ICP备18030435号</p>
         </div>
     </div>
 </template>

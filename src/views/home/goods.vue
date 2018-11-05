@@ -7,8 +7,7 @@
                     <h1 style="font-size: 24px" class="m-b-10">申请代购</h1>
                     <img :src="goodsList.goodsImg" class="image floatLeft">
                     <div class="con floatRight">
-                        <p class="goodsName line-ellipsis-1 m-t-10">{{goodsList.goodsName}}</p>
-                        <p class="goodsName line-ellipsis-1 m-t-10">{{goodsList.goodsName}}</p>
+                        <p class="goodsName line-ellipsis-1 m-t-10"><label>商品名称：</label>{{goodsList.goodsName}}</p>
                         <el-form ref="form" :model="form" label-width="80px" class="m-t-20">
                               <el-form-item label="商品价格">
                                 <el-input v-model="form.goodsPrice" placeholder="请输入商品价格" size="small"></el-input>
@@ -50,6 +49,8 @@ export default {
         }
     },
     mounted() {
+        this.goodsPrice = '';
+        this.goodsRemark = '';
         this.param.accid = localStorage.getItem("userId") || '';
         goods.list({goodsUrl:this.$route.query.url}).then(response=>{
             this.form = response.data.data
@@ -66,7 +67,7 @@ export default {
             goods.update({
                 goodsId:this.form.goodsId,
                 goodsPrice:this.form.goodsPrice,
-                goodsRemark:this.form.goodsPrice
+                goodsRemark:this.form.goodsRemark
             }).then(response=>{
                 if (response.data.code == 200) {
                     this.addCar()
