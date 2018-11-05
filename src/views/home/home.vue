@@ -12,12 +12,12 @@
                 <img class="amazon m-l-30 m-r-30" src="../../assets/home/u40.png" alt="">
             </div>
         </div>
-        <div style="margin-top:100px;padding:0 20px; background:#51ade8">
+        <div style="margin-top:100px;padding:20px; background:#51ade8">
             <el-card v-for="(o, index) in goodsList" :key="o.goodsId" class="goods m-l-20 m-r-20">
                 <img :src="o.goodsImg" class="goodsImg">
                 <div style="padding: 14px;">
                     <div class="bottom clearfix">
-                        <p>{{ o.goodsName }}</p>
+                        <p class="line-ellipsis-1">{{ o.goodsName }}</p>
                         <el-form ref="form" :model="o" label-width="40px" class="floatLeft">
                             <el-form-item label="价格">
                                 <el-input v-model="o.goodsPrice" placeholder="请输入商品价格" size="small"></el-input>
@@ -28,6 +28,7 @@
                 </div>
             </el-card>
         </div>
+        <Footer-bar/>
     </div>
 </template>
 

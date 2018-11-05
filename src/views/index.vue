@@ -83,6 +83,9 @@ export default {
     .el-menu--horizontal{
         background: #f0f0f0;
     }
+    .el-menu--horizontal>.el-menu-item.is-active {
+        border-bottom: none;
+    }
 }
 .mainContent{
     width: 100%;

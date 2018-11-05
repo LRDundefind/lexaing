@@ -34,12 +34,14 @@
                     </template>
                   </el-table-column>
                   <el-table-column
+                    label="单价"
                     prop="goods.goodsPrice"
                     width="120"
                     align="center">
 
                   </el-table-column>
                   <el-table-column
+                    label="数量"
                     prop="itemNum"
                     width="120"
                     align="center">
