@@ -112,24 +112,24 @@
                 goods:[],
                 isIndeterminate:false,
                 tableData:[
-                    {
-                      imgPath: 'https://assets-cdn.github.com/images/modules/dashboard/github-universe-2018.svg',
-                      info: 'motuoluola',
-                      standard: '规格：黑',
-                      number:1,
-                      source:"亚马逊",
-                      goodTotal:4488,
-                      remark:''
-                    },
-                    {
-                      imgPath: 'https://assets-cdn.github.com/images/modules/dashboard/github-universe-2018.svg',
-                      info: 'motuoluola',
-                      standard: '规格：黑',
-                      number:1,
-                      source:"亚马逊",
-                      goodTotal:4488,
-                      remark:''
-                    }
+                    // {
+                    //   imgPath: 'https://assets-cdn.github.com/images/modules/dashboard/github-universe-2018.svg',
+                    //   info: 'motuoluola',
+                    //   standard: '规格：黑',
+                    //   number:1,
+                    //   source:"亚马逊",
+                    //   goodTotal:4488,
+                    //   remark:''
+                    // },
+                    // {
+                    //   imgPath: 'https://assets-cdn.github.com/images/modules/dashboard/github-universe-2018.svg',
+                    //   info: 'motuoluola',
+                    //   standard: '规格：黑',
+                    //   number:1,
+                    //   source:"亚马逊",
+                    //   goodTotal:4488,
+                    //   remark:''
+                    // }
                 ],
                 checkedGoods:{},
             }

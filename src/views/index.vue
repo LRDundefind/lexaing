@@ -6,6 +6,7 @@
                 <el-menu-item index="/login" v-if="isLogin=='false'">您好，请登陆</el-menu-item>
                 <el-menu-item index="/home">首页</el-menu-item>
                 <el-menu-item index="/my/index">我的乐享</el-menu-item>
+                <el-menu-item index="/my/ShoppingCar" v-if="isLogin=='true'">购物车</el-menu-item>
                 <el-menu-item index="/login?exit=1" v-if="isLogin=='true'">退出</el-menu-item>
                 <!-- <el-submenu index="2">
                     <template slot="title">我的工作台</template>

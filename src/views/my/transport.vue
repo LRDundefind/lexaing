@@ -66,15 +66,15 @@
                 goods:[],
                 isIndeterminate:false,
                 tableData:[
-                    {
-                      parcelNum: '001',
-                      info: 'motuoluola',
-                      weight: '10',
-                      consignee:"李",
-                      status:"已收货",
-                      logisticsNum:"001",
+                    // {
+                    //   parcelNum: '001',
+                    //   info: 'motuoluola',
+                    //   weight: '10',
+                    //   consignee:"李",
+                    //   status:"已收货",
+                    //   logisticsNum:"001",
 
-                    },
+                    // },
                 ],
                 checkedGoods:{},
             }

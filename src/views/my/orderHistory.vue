@@ -1,9 +1,9 @@
 <template>
     <div class="warehouse">
         <el-menu :default-active="activeIndex" mode="horizontal" @select="handleSelect">
-            <el-menu-item index="1">待付款</el-menu-item>
-            <el-menu-item index="2">已付款</el-menu-item>
-            <el-menu-item index="3">待收货</el-menu-item>
+            <el-menu-item index="1">全部订单</el-menu-item>
+            <!-- <el-menu-item index="2">已付款</el-menu-item>
+            <el-menu-item index="3">待收货</el-menu-item> -->
         </el-menu>
         <el-container class="m-b-20 m-t-20">
             
@@ -32,7 +32,7 @@
                     label="操作"
                     align="center">
                     <template slot-scope="scope">
-                        <el-button type="text">取消订单</el-button>
+                        <el-button type="text">已完成</el-button>
                     </template>
                   </el-table-column>
                 </el-table>
